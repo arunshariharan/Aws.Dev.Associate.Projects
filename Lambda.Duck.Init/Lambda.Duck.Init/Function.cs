@@ -1,14 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Lambda.Duck.Init.Ducks;
 using Amazon.Lambda.Core;
-using System.Reflection;
-using System.Net;
-using Lambda.Duck.Init.Repository;
-using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DocumentModel;
+using Lambda.Duck.Init.Ducks;
 using Lambda.Duck.Init.Operations;
 using Lambda.Duck.Init.Validations;
 

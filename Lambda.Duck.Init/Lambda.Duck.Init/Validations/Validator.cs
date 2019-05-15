@@ -1,7 +1,5 @@
 ﻿using Lambda.Duck.Init.Ducks;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Lambda.Duck.Init.Validations
 {

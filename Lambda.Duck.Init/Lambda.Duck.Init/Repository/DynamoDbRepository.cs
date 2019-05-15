@@ -4,8 +4,6 @@ using Amazon.DynamoDBv2.Model;
 using Lambda.Duck.Init.Ducks;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Lambda.Duck.Init.Repository
