@@ -10,52 +10,25 @@ namespace Lambda.Duck.Init.Repository
 {
     class DynamoDbRepository : IDynamoDbRepository
     {
-        public async void AddDocument(Table table, NewDucks duck)
+        const int MAX_TABLES_TO_RETRIEVE = 5;
+
+        public async void AddDuckToTable(Table table, NewDucks duck)
         {
             var serializedDuck = JsonConvert.SerializeObject(duck);
             Document duckDocument = Document.FromJson(serializedDuck);
 
             await table.PutItemAsync(duckDocument);
         }
-
-        public AmazonDynamoDBClient CreateClient()
-        {
-            try
-            {
-                AmazonDynamoDBClient client = new AmazonDynamoDBClient();
-                return client;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Failed to create dynomoDB Client. " + ex.Message);
-                throw new Exception();
-            }
-        }
-
-        public void CreateTable()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool DeleteDocument()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public async Task<Table> GetTable(string tableName, AmazonDynamoDBClient client)
         {
-            ListTablesResponse response = await client.ListTablesAsync(limit: 1);
+            ListTablesResponse response = await client.ListTablesAsync(limit: MAX_TABLES_TO_RETRIEVE);
             if (response.TableNames.Contains(tableName))
             {
                 return Table.LoadTable(client, tableName);
             }
 
             return null;
-        }
-
-        public bool UpdateDocument()
-        {
-            throw new NotImplementedException();
         }
     }
 }

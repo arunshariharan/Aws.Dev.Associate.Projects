@@ -7,12 +7,8 @@ namespace Lambda.Duck.Init.Repository
 {
     public interface IDynamoDbRepository
     {
-        void AddDocument(Table table, NewDucks duck);
-        AmazonDynamoDBClient CreateClient();
+        void AddDuckToTable(Table table, NewDucks duck);
         Task<Table> GetTable(string tableName, AmazonDynamoDBClient client);
-        void CreateTable();        
-        bool DeleteDocument();
-        bool UpdateDocument();
         
     }
 }

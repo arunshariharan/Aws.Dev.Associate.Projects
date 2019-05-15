@@ -21,7 +21,7 @@ namespace Lambda.Duck.Init.Operations
 
             if (table != null)
             {
-                _repository.AddDocument(table, createdDuck);
+                _repository.AddDuckToTable(table, createdDuck);
             }
             else
             {
