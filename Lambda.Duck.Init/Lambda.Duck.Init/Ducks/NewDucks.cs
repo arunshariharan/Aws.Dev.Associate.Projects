@@ -16,5 +16,6 @@ namespace Lambda.Duck.Init.Ducks
         public string Talent { get; set; } = "No special Talent";
         public string TypeOfQuack { get; set; } = "Quacks";
         public string TypeofDuck { get; set; } = "Basic Duck";
+        public Guid DuckId = Guid.NewGuid();
     }
 }
