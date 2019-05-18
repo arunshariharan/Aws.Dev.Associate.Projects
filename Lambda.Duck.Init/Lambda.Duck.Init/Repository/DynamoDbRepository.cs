@@ -10,9 +10,9 @@ namespace Lambda.Duck.Init.Repository
 {
     class DynamoDbRepository : IDynamoDbRepository
     {
-        const int MAX_TABLES_TO_RETRIEVE = 5;
+        const int MAX_PAGE_SIZE = 1;
 
-        public async void AddDuckToTable(Table table, NewDucks duck)
+        public async void AddDuckToTable(Table table, BaseDuck duck)
         {
             var serializedDuck = JsonConvert.SerializeObject(duck);
             Document duckDocument = Document.FromJson(serializedDuck);
@@ -22,7 +22,7 @@ namespace Lambda.Duck.Init.Repository
         
         public async Task<Table> GetTable(string tableName, AmazonDynamoDBClient client)
         {
-            ListTablesResponse response = await client.ListTablesAsync(limit: MAX_TABLES_TO_RETRIEVE);
+            ListTablesResponse response = await client.ListTablesAsync(limit: MAX_PAGE_SIZE);
             if (response.TableNames.Contains(tableName))
             {
                 return Table.LoadTable(client, tableName);

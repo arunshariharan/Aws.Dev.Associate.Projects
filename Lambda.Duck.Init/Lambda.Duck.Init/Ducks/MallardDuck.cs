@@ -1,6 +1,6 @@
 ﻿namespace Lambda.Duck.Init.Ducks
 {
-    public class MallardDuck : NewDucks
+    public class MallardDuck : BaseDuck
     {
         public MallardDuck(string name) : base(name)
         {

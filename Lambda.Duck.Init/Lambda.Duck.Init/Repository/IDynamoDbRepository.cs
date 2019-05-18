@@ -7,7 +7,7 @@ namespace Lambda.Duck.Init.Repository
 {
     public interface IDynamoDbRepository
     {
-        void AddDuckToTable(Table table, NewDucks duck);
+        void AddDuckToTable(Table table, BaseDuck duck);
         Task<Table> GetTable(string tableName, AmazonDynamoDBClient client);
         
     }

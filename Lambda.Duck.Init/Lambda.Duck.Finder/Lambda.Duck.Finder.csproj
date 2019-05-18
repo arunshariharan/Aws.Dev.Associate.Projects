@@ -6,8 +6,9 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.Core" Version="1.1.0" />
-    <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="1.5.0" />
+    <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="1.4.0" />
+    <PackageReference Include="AWSSDK.DAX" Version="3.3.100.20" />
     <PackageReference Include="AWSSDK.DAX.Client" Version="1.1.1" />
-    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.101.8" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.101.10" />
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ namespace Lambda.Duck.Init
 {
     public class Function
     {
-        public NewDucks FunctionHandler(DuckDto input, ILambdaContext context)
+        public BaseDuck FunctionHandler(DuckDto input, ILambdaContext context)
         {
             Validator.ValidateDuck(input);
 
