@@ -13,5 +13,6 @@ namespace Lambda.Duck.Finder.Models
         public string TypeOfQuack { get; set; }
         public string TypeofDuck { get; set; }
         public Guid DuckId { get; set; }
+        public DateTime Timestamp = DateTime.UtcNow;
     }
 }

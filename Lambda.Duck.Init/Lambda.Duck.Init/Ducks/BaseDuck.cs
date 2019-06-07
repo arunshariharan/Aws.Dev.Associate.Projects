@@ -16,5 +16,6 @@ namespace Lambda.Duck.Init.Ducks
         public string TypeofDuck { get; set; } = "Basic Duck";
 
         public Guid DuckId = Guid.NewGuid();
+        public DateTime Timestamp = DateTime.UtcNow;
     }
 }

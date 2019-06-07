@@ -1,17 +1,18 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.Model;
+using Amazon.XRay.Recorder.Handlers.AwsSdk;
 using Lambda.Duck.Finder.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Amazon.DAX;
+
 
 namespace Lambda.Duck.Finder.Repository
 {
     public class DynamoDbRepository
     {
-        private const int MAX_PAGE_SIZE = 1;
+        private const int MAX_PAGE_SIZE = 10;
         private const string TABLE_NAME = "Duck-DevAss";
         private readonly AmazonDynamoDBClient _client;
         //private readonly ClusterDaxClient _client;
@@ -20,6 +21,7 @@ namespace Lambda.Duck.Finder.Repository
         {
             //var clientconfig = new DaxClientConfig("DAX_CLUSTER_ENDPOINT_HERE", 8111);
             //_client = new ClusterDaxClient(clientconfig);
+            AWSSDKHandler.RegisterXRayForAllServices();
             _client = new AmazonDynamoDBClient();
         }
 
@@ -52,7 +54,7 @@ namespace Lambda.Duck.Finder.Repository
                 TableName = TABLE_NAME,
                 KeyConditionExpression = "DuckId = :duckId",
                 ExpressionAttributeValues = new Dictionary<string, AttributeValue> { { ":duckId", new AttributeValue { S = param.DuckId.ToString() } } },
-                Limit = 1
+                Limit = MAX_PAGE_SIZE
             };
         }
     }

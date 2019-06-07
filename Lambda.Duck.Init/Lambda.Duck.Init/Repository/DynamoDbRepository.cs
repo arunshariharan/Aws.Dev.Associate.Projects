@@ -12,7 +12,7 @@ namespace Lambda.Duck.Init.Repository
     {
         const int MAX_PAGE_SIZE = 1;
 
-        public async void AddDuckToTable(Table table, BaseDuck duck)
+        public async Task AddDuckToTable(Table table, BaseDuck duck)
         {
             var serializedDuck = JsonConvert.SerializeObject(duck);
             Document duckDocument = Document.FromJson(serializedDuck);

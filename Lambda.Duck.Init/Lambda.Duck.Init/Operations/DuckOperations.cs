@@ -1,11 +1,12 @@
-﻿using Amazon.DAX;
-using Amazon.DynamoDBv2;
+﻿using Amazon.DynamoDBv2;
 using Lambda.Duck.Init.Ducks;
 using Lambda.Duck.Init.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
+using Amazon.XRay.Recorder.Handlers.AwsSdk;
 
 namespace Lambda.Duck.Init.Operations
 {
@@ -19,22 +20,26 @@ namespace Lambda.Duck.Init.Operations
         {
             //var config = new DaxClientConfig("DAX_CLUSTER_ENDPOINT_HERE", 8111);
             //_client = new ClusterDaxClient(config);
+            AWSSDKHandler.RegisterXRayForAllServices();
             _client = new AmazonDynamoDBClient();
+            
         }
 
         const string TABLE_NAME = "Duck-DevAss";
 
-        public async void AddDuckToRepository(BaseDuck createdDuck)
+        public async Task AddDuckToRepository(BaseDuck createdDuck)
         {
-            var table = await _repository.GetTable(TABLE_NAME, _client);
-
-            if (table != null)
+            try
             {
-                _repository.AddDuckToTable(table, createdDuck);
+                var table = await _repository.GetTable(TABLE_NAME, _client);
+                if (table != null)
+                {
+                    await _repository.AddDuckToTable(table, createdDuck);
+                }
             }
-            else
+            catch(Exception e)
             {
-                Console.WriteLine("Unable to write to Table");
+                Console.WriteLine("Unable to write to Table: " + e);
             }
         }
 
